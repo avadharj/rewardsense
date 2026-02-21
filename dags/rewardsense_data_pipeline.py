@@ -23,7 +23,8 @@ Notes:
     - Task callables use deferred imports (import inside function body)
       to keep DAG parsing fast and avoid import-time failures.
     - Story 5.1 defines the DAG structure with placeholder task bodies.
-      Stories 5.2 and 5.3 will wire in real implementations.
+      Story 5.2 wires in ingestion implementations using scripts/download_data.py
+      with a per-run staging directory and a single atomic commit.
     - Story 5.5 implements monitoring, alerting, and callbacks.
 """
 
