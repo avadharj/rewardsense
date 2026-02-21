@@ -12,14 +12,17 @@ x-airflow-common: &airflow-common
     AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "True"
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "True"
     AIRFLOW__CORE__TEST_CONNECTION: Enabled
-   
+
+    # Make repo code importable
+    PYTHONPATH: /opt/airflow:/opt/airflow/src
+
+    # Google (your existing config)
     GOOGLE_APPLICATION_CREDENTIALS: /home/airflow/.config/gcloud/application_default_credentials.json
-    
     AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT: ${AIRFLOW_CONN_GOOGLE_CLOUD_DEFAULT:-google-cloud-platform://?extra__google_cloud_platform__project=rewardsense}
- 
     GCP_PROJECT_ID: ${GCP_PROJECT_ID:-rewardsense}
     GCP_BUCKET_NAME: ${GCP_BUCKET_NAME:-rewardsense-dvc-store}
     BIGQUERY_DATASET: ${BIGQUERY_DATASET:-rewardsense_analytics}
+
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs/airflow:/opt/airflow/logs
@@ -27,13 +30,20 @@ x-airflow-common: &airflow-common
     - ./config:/opt/airflow/config
     - ./src:/opt/airflow/src
 
+    # ✅ ADD THIS (required for scripts.download_data)
+    - ./scripts:/opt/airflow/scripts
+
+    # (optional but helpful if pipeline writes to data/)
+    - ./data:/opt/airflow/data
+
     - ~/.config/gcloud:/home/airflow/.config/gcloud:ro
+
   depends_on:
     airflow-postgres:
       condition: service_healthy
 
-services:
 
+services:
   airflow-postgres:
     image: postgres:15
     container_name: rewardsense-airflow-postgres
@@ -42,7 +52,7 @@ services:
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     ports:
-      - "5433:5432" 
+      - "5433:5432"
     volumes:
       - airflow-postgres-data:/var/lib/postgresql/data
     healthcheck:
@@ -97,4 +107,3 @@ services:
 volumes:
   airflow-postgres-data:
     name: rewardsense-airflow-pgdata
-    

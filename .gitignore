@@ -76,10 +76,12 @@ infrastructure/airflow_dags/__pycache__/
 !data/processed/.gitkeep
 !data/interim/.gitkeep
 !data/data_card.md
+data/.airflow_staging/
 
 # Logs
 logs/
 *.log
+logs/airflow/
 
 # Testing
 .pytest_cache/
