@@ -85,6 +85,13 @@ data/profiling/reports/*.json
 data/profiling/visualizations/*.png
 data/profiling/visualizations/*.html
 
+# Profiling outputs (generated files)
+data/profiling/history/*.json
+data/profiling/reports/*.html
+data/profiling/reports/*.json
+data/profiling/visualizations/*.png
+data/profiling/visualizations/*.html
+
 # Logs
 logs/
 *.log

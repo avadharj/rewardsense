@@ -481,6 +481,11 @@ def _run_transform_pipeline(**context):
 # =============================================================================
 
 
+# =============================================================================
+# Reporting / Monitoring task callables  (Story 5.5)
+# =============================================================================
+
+
 def _generate_pipeline_report(**context):
     """Generate a summary report of the pipeline run."""
     from data_pipeline.monitoring.pipeline_report import PipelineReportGenerator
