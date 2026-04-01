@@ -63,6 +63,16 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* Remove focus outlines on Recharts elements */
+.recharts-wrapper,
+.recharts-wrapper svg,
+.recharts-surface,
+.recharts-bar-rectangle,
+.recharts-active-bar {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* Hide scrollbar for horizontal swipe containers */
 .scrollbar-none {
   -ms-overflow-style: none;
