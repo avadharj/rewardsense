@@ -66,7 +66,9 @@ class TestPredictEndpoint:
         data = client.post("/predict", json=VALID_PREDICT_PAYLOAD).json()
         for card in data["recommended_cards"]:
             missing = CARD_REQUIRED_FIELDS - set(card.keys())
-            assert not missing, f"Card '{card.get('card_name')}' missing fields: {missing}"
+            assert not missing, (
+                f"Card '{card.get('card_name')}' missing fields: {missing}"
+            )
 
     def test_cards_ranked_in_order(self):
         data = client.post("/predict", json=VALID_PREDICT_PAYLOAD).json()
@@ -146,7 +148,12 @@ class TestMonitoringEndpoint:
     def test_serving_metrics_fields(self):
         data = client.get("/monitoring").json()
         m = data["serving_metrics"]
-        for field in ("request_count", "avg_latency_ms", "error_rate", "p95_latency_ms"):
+        for field in (
+            "request_count",
+            "avg_latency_ms",
+            "error_rate",
+            "p95_latency_ms",
+        ):
             assert field in m, f"serving_metrics missing '{field}'"
 
     def test_retrain_history_is_list(self):
