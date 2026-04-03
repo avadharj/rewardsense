@@ -4,7 +4,6 @@ Comprehensive tests for the RewardSense Serving API.
 Covers /health, /predict, /monitoring endpoints and CORS configuration.
 """
 
-import pytest
 from fastapi.testclient import TestClient
 
 from src.serving.app import app
