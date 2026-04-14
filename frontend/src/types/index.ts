@@ -228,6 +228,10 @@ export interface TransactionsResponse {
   page: number;
   page_size: number;
   has_next: boolean;
+  /** Sum of reward_earned across all transactions (omitted by older API versions). */
+  total_rewards?: number;
+  /** Sum of estimated_savings across all transactions (omitted by older API versions). */
+  total_savings?: number;
 }
 
 export interface TransactionsExportResponse {
