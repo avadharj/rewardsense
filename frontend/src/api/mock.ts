@@ -315,7 +315,7 @@ export async function mockTransactions(
       chosen_card_name: ["Amex Gold Card", "Chase Sapphire Preferred", "Citi Double Cash"][idx % 3],
       reward_earned: Number((1.2 + idx * 0.15).toFixed(2)),
       estimated_savings: Number((0.7 + idx * 0.1).toFixed(2)),
-      source_flow: idx % 2 ? "quick_transaction" : "portfolio_recommendation",
+      source_flow: idx % 2 ? "transaction" : "portfolio_recommendation",
       card_was_saved: true,
       recommendation_event_id: null,
       timestamp: new Date(Date.now() - idx * 3600000).toISOString(),

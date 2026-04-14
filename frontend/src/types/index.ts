@@ -230,6 +230,11 @@ export interface TransactionsResponse {
   has_next: boolean;
 }
 
+export interface TransactionsExportResponse {
+  format: "csv" | "xlsx";
+  download_url: string;
+}
+
 export interface CategorySummaryItem {
   category: string;
   total_spend: number;
@@ -281,11 +286,6 @@ export interface FeedbackRequest {
 export interface FeedbackResponse {
   ok: boolean;
   feedback_id: number;
-}
-
-export interface TransactionsExportResponse {
-  format: string;
-  download_url: string;
 }
 
 export interface BusinessMetricsResponse {
